@@ -1,5 +1,7 @@
 "use strict";
 
+const TRIP_DAY_COUNT = 3;
+
 const createTripInfoTemplate = () => {
   return (
     `<section class="trip-main__trip-info  trip-info">
@@ -347,13 +349,13 @@ render(tripEventsElement, createTripDaysTemplate(), `beforeend`);
 
 const tripDaysElement = tripEventsElement.querySelector(`.trip-days`);
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < TRIP_DAY_COUNT; i++) {
   render(tripDaysElement, createTripDayTemplate(), `beforeend`);
 }
 
 const tripEventsListElements = tripDaysElement.querySelectorAll(`.trip-events__list`);
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < TRIP_DAY_COUNT; i++) {
   render(tripEventsListElements[i], createTripEventTemplate(), `beforeend`);
 }
 
