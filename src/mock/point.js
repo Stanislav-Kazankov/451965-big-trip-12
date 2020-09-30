@@ -15,16 +15,18 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const getRandomIntegers = (a = 0, b = 1, maxCount = 1) => {
+const getRandomIntegers = (maxCount) => {
   const count = getRandomInteger(0, maxCount);
   let result = [];
   for (let i = 0; i < maxCount; i++) {
     result.push(i);
   }
   return result.slice().sort(
-    () => {return PLUS_PROBABILITY - Math.random()}
+      () => {
+        return PLUS_PROBABILITY - Math.random();
+      }
   ).slice(0, count + 1);
-}
+};
 
 let prevDate = new Date();
 
@@ -32,11 +34,11 @@ const generateDate = () => {
   const date = new Date(prevDate);
   const hourGap = getRandomInteger(0, MAX_HOUR_GAP);
   const minuteGap = getRandomInteger(0, MAX_MINUTE_GAP);
-  date.setHours(date.getHours() + date.getTimezoneOffset() / 60 + hourGap, date.getMinutes() +  minuteGap, 0, 0);
+  date.setHours(date.getHours() + date.getTimezoneOffset() / 60 + hourGap, date.getMinutes() + minuteGap, 0, 0);
   prevDate.setTime(date.getTime());
 
   return date;
-}
+};
 
 const generateDescription = () => {
   const sentences = [
@@ -55,8 +57,10 @@ const generateDescription = () => {
   const randomCount = getRandomInteger(MIN_SENTENCE_COUNT, MAX_SENTENCE_COUNT);
 
   return sentences.slice().sort(
-    () => {return PLUS_PROBABILITY - Math.random()}
-  ).slice(MIN_SENTENCE_COUNT - 1, MAX_SENTENCE_COUNT)
+      () => {
+        return PLUS_PROBABILITY - Math.random();
+      }
+  ).slice(MIN_SENTENCE_COUNT - 1, randomCount)
   .join(` `);
 };
 
@@ -64,8 +68,8 @@ const generatePicture = () => {
   return {
     src: `http://picsum.photos/248/152?r=${Math.random()}`,
     description: generateDescription()
-  }
-}
+  };
+};
 
 const generatePictures = () => {
   const count = getRandomInteger(MIN_PICTURE_COUNT, MAX_PICTURE_COUNT);
@@ -75,7 +79,7 @@ const generatePictures = () => {
   }
 
   return pictures;
-}
+};
 
 const destinations = [
   {
@@ -103,7 +107,7 @@ const generateId = () => {
   const id = prevId + 1;
   prevId = id;
   return id;
-}
+};
 
 const types = [
   {
@@ -111,11 +115,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Upgrade to a business class",
-        "price": 120
+        title: `Upgrade to a business class`,
+        price: 120
       }, {
-        "title": "Choose the radio station",
-        "price": 60
+        title: `Choose the radio station`,
+        price: 60
       }
     ]
   }, {
@@ -123,11 +127,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Choose meal",
-        "price": 180
+        title: `Choose meal`,
+        price: 180
       }, {
-        "title": "Upgrade to comfort class",
-        "price": 50
+        title: `Upgrade to comfort class`,
+        price: 50
       }
     ]
   }, {
@@ -135,11 +139,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Add luggage",
-        "price": 20
+        title: `Add luggage`,
+        price: 20
       }, {
-        "title": "Switch to comfort class",
-        "price": 70
+        title: `Switch to comfort class`,
+        price: 70
       }
     ]
   }, {
@@ -147,11 +151,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Add luggage",
-        "price": 30
+        title: `Add luggage`,
+        price: 30
       }, {
-        "title": "Switch to comfort class",
-        "price": 80
+        title: `Switch to comfort class`,
+        price: 80
       }
     ]
   }, {
@@ -159,11 +163,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Add luggage",
-        "price": 25
+        title: `Add luggage`,
+        price: 25
       }, {
-        "title": "Upgrade to a business class",
-        "price": 100
+        title: `Upgrade to a business class`,
+        price: 100
       }
     ]
   }, {
@@ -171,11 +175,11 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Add luggage",
-        "price": 40
+        title: `Add luggage`,
+        price: 40
       }, {
-        "title": "Upgrade to a business class",
-        "price": 130
+        title: `Upgrade to a business class`,
+        price: 130
       }
     ]
   }, {
@@ -183,23 +187,23 @@ const types = [
     preposition: `to`,
     offers: [
       {
-        "title": "Add luggage",
-        "price": 30
+        title: `Add luggage`,
+        price: 30
       }, {
-        "title": "Switch to comfort class",
-        "price": 100
+        title: `Switch to comfort class`,
+        price: 100
       },
       {
-        "title": "Add meal",
-        "price": 15
+        title: `Add meal`,
+        price: 15
       },
       {
-        "title": "Choose seats",
-        "price": 5
+        title: `Choose seats`,
+        price: 5
       },
       {
-        "title": "Travel by train",
-        "price": 40
+        title: `Travel by train`,
+        price: 40
       }
     ]
   }, {
@@ -207,11 +211,11 @@ const types = [
     preposition: `in`,
     offers: [
       {
-      "title": "Add meal",
-      "price": 30
+        title: `Add meal`,
+        price: 30
       }, {
-      "title": "Switch to comfort class",
-      "price": 200
+        title: `Switch to comfort class`,
+        price: 200
       }
     ]
   }, {

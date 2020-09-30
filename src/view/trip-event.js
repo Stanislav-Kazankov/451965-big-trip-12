@@ -7,8 +7,8 @@ const createOfferTemplate = (offer) => {
       &plus;
       &euro;&nbsp;<span class="event__offer-price">${offer.price}</span>
      </li>`
-  )
-}
+  );
+};
 
 const createOffersTemplate = (offers) => {
   return (
@@ -18,7 +18,7 @@ const createOffersTemplate = (offers) => {
 };
 
 export const createTripEventTemplate = (point) => {
-  const {basePrice, dateFrom, dateTo, destinationIndex, id, isFavorite, offerIndexes, typeIndex} = point;
+  const {basePrice, dateFrom, dateTo, destinationIndex, typeIndex} = point;
   const destination = destinations[destinationIndex];
   const type = types[typeIndex];
   let duration = new Date(dateTo - dateFrom);
@@ -34,9 +34,9 @@ export const createTripEventTemplate = (point) => {
 
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="2019-03-18T10:30">${dateFrom.toLocaleString('en-GB').slice(12, 17)}</time>
+            <time class="event__start-time" datetime="2019-03-18T10:30">${dateFrom.toLocaleString(`en-GB`).slice(12, 17)}</time>
             &mdash;
-            <time class="event__end-time" datetime="2019-03-18T11:00">${dateTo.toLocaleString('en-GB').slice(12, 17)}</time>
+            <time class="event__end-time" datetime="2019-03-18T11:00">${dateTo.toLocaleString(`en-GB`).slice(12, 17)}</time>
           </p>
           <p class="event__duration">${duration.getHours()}H&nbsp;${duration.getMinutes()}M</p>
         </div>

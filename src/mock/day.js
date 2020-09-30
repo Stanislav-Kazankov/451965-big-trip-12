@@ -5,7 +5,7 @@ const generateNumber = () => {
   prevNumber = number;
 
   return number;
-}
+};
 
 let prevDate = new Date();
 
@@ -15,11 +15,11 @@ const generateDate = () => {
   prevDate.setDate(date.getDate());
 
   return date;
-}
+};
 
 export const generateDay = () => {
   return {
     number: generateNumber(),
     date: generateDate()
-  }
-}
+  };
+};

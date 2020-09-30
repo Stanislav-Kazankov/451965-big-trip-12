@@ -13,8 +13,8 @@ const createAddFormButtonsTemplate = () => {
     <button class="event__rollup-btn" type="button">
       <span class="visually-hidden">Open event</span>
     </button>`
-  )
-}
+  );
+};
 
 const createButtonsTemplate = (editing) => {
   let caption;
@@ -27,7 +27,7 @@ const createButtonsTemplate = (editing) => {
   }
 
   return `<button class="event__reset-btn" type="reset">${caption}</button>${addFormButtonsTemplate}`;
-}
+};
 
 const createTypeSwitchItemTemplate = (typeName, checked) => {
   const typeNameLowerCase = typeName.toLowerCase();
@@ -37,8 +37,8 @@ const createTypeSwitchItemTemplate = (typeName, checked) => {
       <input id="event-type-${typeNameLowerCase}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${typeNameLowerCase}" ${checked}>
       <label class="event__type-label  event__type-label--${typeNameLowerCase}" for="event-type-${typeNameLowerCase}-1">${typeName}</label>
     </div>`
-  )
-}
+  );
+};
 
 const createTransferTypeSwitchTemplate = (typeIndex) => {
   let result = ``;
@@ -48,13 +48,13 @@ const createTransferTypeSwitchTemplate = (typeIndex) => {
   }
   if (i === typeIndex) {
     result += createTypeSwitchItemTemplate(types[typeIndex].name, `checked`);
-    for (let i = typeIndex + 1; i < types.length - 3; i++) {
+    for (i = typeIndex + 1; i < types.length - 3; i++) {
       result += createTypeSwitchItemTemplate(types[i].name, ``);
     }
   }
 
   return result;
-}
+};
 
 const createActivityTypeSwitchTemplate = (typeIndex) => {
   let result = ``;
@@ -76,7 +76,7 @@ const createActivityTypeSwitchTemplate = (typeIndex) => {
   }
 
   return result;
-}
+};
 
 const createOfferSwitchItemTemplate = (offer, checked) => {
   const {title, price} = offer;
@@ -92,8 +92,8 @@ const createOfferSwitchItemTemplate = (offer, checked) => {
         &euro;&nbsp;<span class="event__offer-price">${price}</span>
       </label>
     </div>`
-  )
-}
+  );
+};
 
 const createOfferSwitchTemplate = (offers, offerIndexes) => {
   let result = ``;
@@ -109,17 +109,17 @@ const createOfferSwitchTemplate = (offers, offerIndexes) => {
   }
 
   return result;
-}
+};
 
 const createOptionTemplate = (destinationName) => {
   return `<option value="${destinationName}"></option>`;
-}
+};
 
-const createOptionsTemplate = (destinations) => {
+const createOptionsTemplate = () => {
   return destinations.map(
-    ({name}) => createOptionTemplate(name)
+      ({name}) => createOptionTemplate(name)
   ).join(``);
-}
+};
 
 const createOffersSectionTemplate = (offers, offerIndexes) => {
   return (
@@ -131,19 +131,19 @@ const createOffersSectionTemplate = (offers, offerIndexes) => {
       </div>
     </section>`
   );
-}
+};
 
 const createPictureTemplate = (picture) => {
   const {src, description} = picture;
 
-  return `<img class="event__photo" src="${src}" alt="${description}">`
-}
+  return `<img class="event__photo" src="${src}" alt="${description}">`;
+};
 
 const createPicturesTemplate = (pictures) => {
   return pictures.map(
-    (picture) => createPictureTemplate(picture)
+      (picture) => createPictureTemplate(picture)
   ).join(``);
-}
+};
 
 const createDestinationSectionTemplate = (destination) => {
   let result;
@@ -160,21 +160,21 @@ const createDestinationSectionTemplate = (destination) => {
           </div>
         </div>
       </section>`
-    )
+    );
   } else {
     result = ``;
   }
 
   return result;
-}
+};
 
 const createEditFormTemplate = (point = {basePrice: 0, dateFrom: new Date(), dateTo: new Date(), destinationIndex: 0, id: 0, isFavorite: false, offerIndexes: [], typeIndex: 0}) => {
-  const {basePrice, dateFrom, dateTo, destinationIndex, id, isFavorite, offerIndexes, typeIndex} = point;
+  const {basePrice, dateFrom, dateTo, destinationIndex, id, offerIndexes, typeIndex} = point;
   let destination;
   let destinationName = ``;
   destination = destinations[destinationIndex];
   destinationName = destination.name;
-  let typeName = ``, preposition = ``, offers = [];
+  let typeName = ``; let preposition = ``; let offers = [];
   const type = types[typeIndex];
   typeName = type.name;
   preposition = type.preposition;
@@ -209,7 +209,7 @@ const createEditFormTemplate = (point = {basePrice: 0, dateFrom: new Date(), dat
           </label>
           <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${destinationName}" list="destination-list-1" data-prev-value="">
           <datalist id="destination-list-1">
-            ${createOptionsTemplate(destinations)}
+            ${createOptionsTemplate()}
           </datalist>
         </div>
 
@@ -234,7 +234,7 @@ const createEditFormTemplate = (point = {basePrice: 0, dateFrom: new Date(), dat
         </div>
 
         <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
-        ${createButtonsTemplate(!Boolean(id))}
+        ${createButtonsTemplate(!id)}
       </header>
       <section class="event__details">
         ${createOffersSectionTemplate(offers, offerIndexes)}
@@ -250,4 +250,4 @@ export {
   createPicturesTemplate,
   createDestinationSectionTemplate,
   createEditFormTemplate
-}
+};

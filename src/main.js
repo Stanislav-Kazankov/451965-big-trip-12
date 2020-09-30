@@ -49,20 +49,20 @@ for (let i = 0; i < TRIP_DAY_COUNT; i++) {
 
 const initEditForm = (editFormElement) => {
   const startPickr = flatpickr(`#event-start-time-1`, {
-    enableTime: true,
-    dateFormat: `d/m/y H:i`,
-    time_24hr: true,
-    onChange: (selectedDates, dateStr) => {
-      endPickr.set(`minDate`, dateStr)
+    'enableTime': true,
+    'dateFormat': `d/m/y H:i`,
+    'time_24hr': true,
+    'onChange': (selectedDates, dateStr) => {
+      endPickr.set(`minDate`, dateStr);
     }
   });
 
   const endPickr = flatpickr(`#event-end-time-1`, {
-    enableTime: true,
-    dateFormat: `d/m/y H:i`,
-    time_24hr: true,
-    onChange: (selectedDates, dateStr) => {
-      startPickr.set(`maxDate`, dateStr)
+    'enableTime': true,
+    'dateFormat': `d/m/y H:i`,
+    'time_24hr': true,
+    'onChange': (selectedDates, dateStr) => {
+      startPickr.set(`maxDate`, dateStr);
     }
   });
 
@@ -83,9 +83,9 @@ const initEditForm = (editFormElement) => {
       if (offers.length) {
         if (!offersSectionElement) {
           render(
-            eventDetailsElement,
-            createOffersSectionTemplate(offers, []),
-            `afterbegin`
+              eventDetailsElement,
+              createOffersSectionTemplate(offers, []),
+              `afterbegin`
           );
         } else {
           const offersContainerElement = offersSectionElement.querySelector(`.event__available-offers`);
@@ -104,12 +104,12 @@ const initEditForm = (editFormElement) => {
     const destinationSectionElement = eventDetailsElement.querySelector(`.event__section--destination`);
     if (destinationIndex > -1) {
       const destination = destinations[destinationIndex];
-      const {name, description, pictures} = destination;
+      const {description, pictures} = destination;
       if (destination.description !== `` || destination.pictures.length) {
         if (!destinationSectionElement) {
           render(
-            eventDetailsElement,
-            createDestinationSectionTemplate(destinations[destinationIndex])
+              eventDetailsElement,
+              createDestinationSectionTemplate(destinations[destinationIndex])
           );
         } else {
           const destinationDescriptionElement = destinationSectionElement.querySelector(`.event__destination-description`);
@@ -137,7 +137,7 @@ const initEditForm = (editFormElement) => {
   saveButtonElement.addEventListener(`click`, (evt) => {
     evt.preventDefault();
     const priceFieldElement = editFormElement.querySelector(`.event__input--price`);
-    const eventTypeInputElement = editFormElement.querySelector(`.event__type-input:checked`)
+    const eventTypeInputElement = editFormElement.querySelector(`.event__type-input:checked`);
     points.push({
       basePrice: priceFieldElement.value,
       dateFrom: startPickr.selectedDates[0],
@@ -146,7 +146,7 @@ const initEditForm = (editFormElement) => {
       id: generateId(),
       isFavorite: false,
       offerIndexes: Array.from(
-        editFormElement.querySelectorAll(`.event__type-input`)
+          editFormElement.querySelectorAll(`.event__type-input`)
       ).map((offer, index, offers) => {
         return offers.indexOf(offer);
       }),
@@ -154,11 +154,11 @@ const initEditForm = (editFormElement) => {
     });
     tripEventsElement.removeChild(editFormElement);
     render(
-      tripEventsListElements[tripEventsListElements.length - 1],
-      createTripEventTemplate(points[points.length - 1])
+        tripEventsListElements[tripEventsListElements.length - 1],
+        createTripEventTemplate(points[points.length - 1])
     );
   });
-}
+};
 
 const eventAddButtonElement = tripMainElement.querySelector(`.trip-main__event-add-btn`);
 
@@ -166,16 +166,14 @@ eventAddButtonElement.addEventListener(`click`, () => {
   const editFormElement = tripEventsElement.querySelector(`.event--edit`);
   if (!editFormElement) {
     render(tripEventsElement, createEditFormTemplate(), `afterbegin`);
-    const editFormElement = tripEventsElement.querySelector(`.event--edit`);
-    initEditForm(editFormElement)
+    editFormElement = tripEventsElement.querySelector(`.event--edit`);
+    initEditForm(editFormElement);
   }
 });
 
 const editFormElement = tripEventsElement.querySelector(`.event--edit`);
 
 initEditForm(editFormElement);
-
-//Экранирование: elem.innerHTML = DOMPurify.sanitize(user.fullName);
 
 let points = [];
 const tripEventsListElements = tripDaysElement.querySelectorAll(`.trip-events__list`);
